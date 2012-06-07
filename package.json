@@ -1,0 +1,20 @@
+{
+  "name": "savagegames-site", 
+  "version": "0.0.1", 
+  "description": "The website to Savage Games.", 
+  "author": "Ian Macalinao <http://simplyian.com/>", 
+  "main": "index", 
+  "engines": { 
+    "node": ">= 0.4.x < 0.8.0" 
+  }, 
+  "scripts": {
+    "test": "make test"
+  }, 
+  "dependencies": {
+    "coffee-script": ">= 1.2.0"
+  }, 
+  "devDependencies": {
+    "mocha": "*",   
+    "should": "*"
+  }
+}
