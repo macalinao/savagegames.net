@@ -11,6 +11,9 @@
     "test": "make test"
   }, 
   "dependencies": {
+    "stylus": "*",
+    "express": "*",
+    "ejs": "*",
     "coffee-script": ">= 1.2.0"
   }, 
   "devDependencies": {
