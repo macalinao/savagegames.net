@@ -1,6 +1,6 @@
 // Variables.less
 // Variables to customize the look and feel of Bootstrap
-// Swatch: Journal
+// Swatch: Superhero
 // Version: 2.0.3
 // -----------------------------------------------------
 
@@ -13,7 +13,7 @@
 @black:                 #000;
 @grayDarker:            #222;
 @grayDark:              #333;
-@gray:                  #888;
+@gray:                  #555;
 @grayLight:             #999;
 @grayLighter:           #eee;
 @white:                 #fff;
@@ -21,50 +21,50 @@
 
 // Accent colors
 // -------------------------
-@blue:                  #369;
-@blueDark:              darken(@blue, 15%);
-@green:                 #22B24C;
-@red:                   #C00;
-@yellow:                #FCFADB;
-@orange:                #FF7F00;
-@pink:                  #CC99CC;
-@purple:                #7a43b6;
+@blue:                  #45515F;
+@blueDark:              #2A333C;
+@green:                 #5DA028;
+@red:                   #A12932;
+@yellow:                #E6C92E;
+@orange:                #E36B23;
+@pink:                  #C74871;
+@purple:                #7073CF;
 
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        #FCFBFD;
-@textColor:             @grayDarker;
+@bodyBackground:        @blueDark;
+@textColor:             #ECE9D7;
 
 
 // Links
 // -------------------------
-@linkColor:             @textColor;
-@linkColorHover:        @gray;
+@linkColor:             @orange;
+@linkColorHover:        @linkColor;
 
 
 // Typography
 // -------------------------
-@sansFontFamily:        'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       Georgia, "Times New Roman", Times, serif;
+@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
 @monoFontFamily:        Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@baseFontSize:          14px;
-@baseFontFamily:        @sansFontFamily;
-@baseLineHeight:        18px;
+@baseFontSize:          15px;
+@baseFontFamily:        @serifFontFamily;
+@baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    'Oswald', sans-serif; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
-@headingsColor:         inherit; // empty to use BS default, @textColor
+@headingsColor:         @orange; // empty to use BS default, @textColor
 
 
 // Tables
 // -------------------------
-@tableBackground:                   transparent; // overall background-color
-@tableBackgroundAccent:             @grayLighter; // for striping
-@tableBackgroundHover:              #f5f5f5; // for hover
-@tableBorder:                       #ddd; // table and cell border
+@tableBackground:                   darken(@blue, 3%); // overall background-color
+@tableBackgroundAccent:             @blue; // for striping
+@tableBackgroundHover:              lighten(@blue, 5%); // for hover
+@tableBorder:                       transparent; // table and cell border
 
 
 // Buttons
@@ -82,14 +82,14 @@
 @btnSuccessBackground:              #62c462;
 @btnSuccessBackgroundHighlight:     #51a351;
 
-@btnWarningBackground:              lighten(@orange, 10%);
+@btnWarningBackground:              lighten(@orange, 15%);
 @btnWarningBackgroundHighlight:     @orange;
 
 @btnDangerBackground:               #ee5f5b;
 @btnDangerBackgroundHighlight:      #bd362f;
 
-@btnInverseBackground:              @linkColor;
-@btnInverseBackgroundHighlight:     darken(@linkColor, 5%);
+@btnInverseBackground:              @gray;
+@btnInverseBackgroundHighlight:     @grayDarker;
 
 
 // Forms
@@ -98,15 +98,15 @@
 @inputBorder:                   #ccc;
 @inputBorderRadius:             3px;
 @inputDisabledBackground:       @grayLighter;
-@formActionsBackground:         @grayLighter;
+@formActionsBackground:         transparent;
 
 // Dropdowns
 // -------------------------
-@dropdownBackground:            @bodyBackground;
-@dropdownBorder:                rgba(0,0,0,.2);
+@dropdownBackground:            lighten(@blue, 10%);
+@dropdownBorder:                rgba(0,0,0,0);
 @dropdownLinkColor:             @textColor;
-@dropdownLinkColorHover:        @textColor;
-@dropdownLinkBackgroundHover:   #eee;
+@dropdownLinkColorHover:        @white;
+@dropdownLinkBackgroundHover:   @linkColor;
 
 
 
@@ -139,21 +139,21 @@
 
 // Hr border color
 // -------------------------
-@hrBorder:                @grayLighter;
+@hrBorder:                transparent;
 
 
 // Navbar
 // -------------------------
-@navbarHeight:                    70px;
-@navbarBackground:                @bodyBackground;
-@navbarBackgroundHighlight:       @bodyBackground;
+@navbarHeight:                    40px;
+@navbarBackground:                @blueDark;
+@navbarBackgroundHighlight:       @navbarBackground;
 
-@navbarText:                      @textColor;
-@navbarLinkColor:                 @linkColor;
-@navbarLinkColorHover:            @linkColor;
+@navbarText:                      @grayLight;
+@navbarLinkColor:                 @orange;
+@navbarLinkColorHover:            @orange;
 @navbarLinkColorActive:           @navbarLinkColorHover;
-@navbarLinkBackgroundHover:       @grayLighter;
-@navbarLinkBackgroundActive:      @grayLighter;
+@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundActive:      @navbarBackground;
 
 @navbarSearchBackground:          lighten(@navbarBackground, 25%);
 @navbarSearchBackgroundFocus:     @white;
@@ -164,7 +164,7 @@
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @grayLighter;
+@heroUnitBackground:              @blue;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 

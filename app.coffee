@@ -21,6 +21,7 @@ app.configure ->
   app.use require('connect-assets')()
 
   app.set 'view engine', 'jade'
+  app.set 'view options', pretty: true
   app.use express.static(__dirname + "/public")
 
 # Development
