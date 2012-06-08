@@ -18,7 +18,17 @@ Use the following command:
 make watch
 ```
 
-This will complie your Coffeescript whenever something changes.
+This will compile your Coffeescript whenever something changes.
+
+It's always nice to restart the server when you change something,
+so I use `nodemon` for that. Just use:
+
+```
+npm install -g nodemon
+nodemon index
+```
+
+to have a development server up and running, restarting when you change the tiniest file.
 
 Building/Running
 ================
