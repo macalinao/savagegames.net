@@ -13,7 +13,8 @@
   "dependencies": {
     "stylus": "*",
     "express": "*",
-    "ejs": "*",
+    "jade": "*",
+    "connect-assets": "*",
     "coffee-script": ">= 1.2.0"
   }, 
   "devDependencies": {

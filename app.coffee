@@ -18,7 +18,9 @@ app.configure ->
         .set('compress', true)
         .render(fn)
 
-  app.set 'view engine', 'ejs'
+  app.use require('connect-assets')()
+
+  app.set 'view engine', 'jade'
   app.use express.static(__dirname + "/public")
 
 # Development
@@ -33,6 +35,8 @@ app.configure 'production', ->
 
 # Routes
 require('./lib/routes') app
+
+js 'main'
 
 # Setup the port
 app.listen 3535
