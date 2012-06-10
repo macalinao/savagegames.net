@@ -15,6 +15,7 @@
     "express": "*",
     "jade": "*",
     "connect-assets": "*",
+    "markdown": "*",
     "coffee-script": ">= 1.2.0"
   }, 
   "devDependencies": {
