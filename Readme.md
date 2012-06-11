@@ -11,15 +11,6 @@ Features/should feature:
 
 Developing
 ==========
-
-Use the following command:
-
-```
-make watch
-```
-
-This will compile your Coffeescript whenever something changes.
-
 It's always nice to restart the server when you change something,
 so I use `nodemon` for that. Just use:
 
@@ -36,7 +27,6 @@ Building/Running
 In the top directory, do:
 
 ```
-make clean build test
 node index
 ```
 

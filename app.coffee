@@ -35,7 +35,7 @@ app.configure 'production', ->
   app.use express.errorHandler
 
 # Routes
-require('./lib/routes') app
+require('./routes') app
 
 js 'main'
 

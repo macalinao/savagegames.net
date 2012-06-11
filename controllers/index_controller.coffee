@@ -9,10 +9,17 @@ loadNewsFeed = (cb) ->
     .end (data) ->
       cb JSON.parse(data.text).responseData.feed.entries
 
-exports.getNewsFeed = getNewsFeed = (cb) ->
+getNewsFeed = (cb) ->
   ###
   Gets the News feed of the website.
 
   TODO: cache
   ###
   loadNewsFeed cb
+
+module.exports = (req, res) ->
+  getNewsFeed (news) ->
+    vars = {
+      news: news
+    }
+    res.render 'index.jade', vars
