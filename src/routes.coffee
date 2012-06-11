@@ -1,9 +1,14 @@
 """
 Contains all routes.
 """
+news = require './news'
 
 module.exports = (app) ->
 
   # Index
   app.get '/', (req, res) ->
-    res.render 'index.jade'
+    news.getNewsFeed (news) ->
+      vars = {
+        news: news
+      }
+      res.render 'index.jade', vars

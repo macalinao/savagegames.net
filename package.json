@@ -16,6 +16,7 @@
     "jade": "*",
     "connect-assets": "*",
     "markdown": "*",
+    "superagent": "*",
     "coffee-script": ">= 1.2.0"
   }, 
   "devDependencies": {

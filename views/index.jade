@@ -12,5 +12,17 @@ div.row
     h2 play.savagegames.net
 
 div.row
-  div.span12
-    h1 Test
+  div.span8
+    div.page-header
+      h1 News
+    
+    each entry in news
+      div
+        a(href=entry.link)
+          h2!= entry.title
+        //h2= entry.publishedDate + ' ' + entry.author
+
+        div!= entry.content
+
+  div.span4
+    h1 TODO sidebar
