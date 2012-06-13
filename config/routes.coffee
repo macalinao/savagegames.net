@@ -1,7 +1,7 @@
-"""
+###
 Contains all routes.
-"""
-controllers = require './controllers'
+###
+controllers = require '../lib/controllers'
 
 module.exports = (app) ->
 

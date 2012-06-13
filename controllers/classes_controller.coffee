@@ -1,4 +1,4 @@
-utils = require '../utils'
+misc = require '../lib/misc'
 
 classes =
   'Warrior':
@@ -18,8 +18,8 @@ classes =
 freeClasses = ['Warrior', 'Archer', 'Other', 'anOther']
 paidClasses = ['Warrior', 'Archer', 'Other', 'anOther']
 
-utils.matrixify freeClasses, 3
-utils.matrixify paidClasses, 3
+misc.matrixify freeClasses, 3
+misc.matrixify paidClasses, 3
 
 module.exports =
   show: (req, res) ->
