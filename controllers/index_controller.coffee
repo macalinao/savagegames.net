@@ -19,7 +19,7 @@ getNewsFeed = (cb) ->
 
 module.exports = (req, res) ->
   getNewsFeed (news) ->
-    vars = {
+    vars =
       news: news
-    }
+
     res.render 'index.jade', vars
