@@ -1,3 +1,5 @@
+utils = require '../utils'
+
 classes =
   'Warrior':
     desc: 'Starts out with a stone sword.'
@@ -15,6 +17,9 @@ classes =
 # Placeholders
 freeClasses = ['Warrior', 'Archer', 'Other', 'anOther']
 paidClasses = ['Warrior', 'Archer', 'Other', 'anOther']
+
+utils.matrixify freeClasses, 3
+utils.matrixify paidClasses, 3
 
 module.exports =
   show: (req, res) ->
