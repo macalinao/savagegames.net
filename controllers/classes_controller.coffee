@@ -22,6 +22,6 @@ misc.matrixify freeClasses, 3
 misc.matrixify paidClasses, 3
 
 module.exports =
-  show: (req, res) ->
+  index: (req, res) ->
     res.render 'classes.jade',
       classes: classes

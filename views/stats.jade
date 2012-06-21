@@ -1,0 +1,37 @@
+mixin time-tabs(heading, prefix)
+  h1= heading
+    small  or 
+      a(href='/stats/games') view more
+  div.tabbable
+    ul.nav.nav-tabs
+      li.active
+        a(href='##{prefix}-day', data-toggle='tab') Today
+      li
+        a(href='##{prefix}-week', data-toggle='tab') 7 days
+      li
+        a(href='##{prefix}-month', data-toggle='tab') Month
+      li
+        a(href='##{prefix}-alltime', data-toggle='tab') All time
+    div.tab-content
+      div.tab-pane.active(id='#{prefix}-day')
+        p test
+
+      div.tab-pane(id='#{prefix}-week')
+        p test2
+
+      div.tab-pane(id='#{prefix}-month')
+        p test3
+
+      div.tab-pane(id='#{prefix}-alltime')
+        p test4
+
+div.row
+  div.span8
+    section#leaderboard
+      mixin time-tabs('Top 10 players', 'p')
+
+    section#latest-games
+      mixin time-tabs('Latest 10 games', 'g')
+
+  div.span4
+    include includes/sidebar
