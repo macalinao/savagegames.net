@@ -4,11 +4,11 @@ Schema = mongoose.Schema
 Player = require './player'
 
 Game = new Schema
-  type: String
-  date: Date
+  type: { type: String, required: yes }
+  date: { type: Date, required: yes } # Date the game started
   rankings: [{
     time: Number # If none then we have a winner
-    player: { type: Schema.ObjectId, get: (id) -> Player.findById(id) } # Player
+    player: Schema.ObjectId # Player
     kills: [Player.schema]
     class: String # Class used
   }]

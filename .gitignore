@@ -5,3 +5,5 @@ node_modules
 *.sublime-workspace
 
 lib/
+
+config/config.coffee

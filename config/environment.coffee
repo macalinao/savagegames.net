@@ -1,3 +1,6 @@
+config = require './config'
+mongoose = require 'mongoose'
+
 module.exports = (app, express) ->
   # Configure app
   app.configure ->
@@ -15,7 +18,9 @@ module.exports = (app, express) ->
     app.use express.errorHandler
       dumpExceptions: yes
       showStack: yes
+    mongoose.connect config.development.database
 
   # Production
   app.configure 'production', ->
     app.use express.errorHandler
+    mongoose.connect config.production.database

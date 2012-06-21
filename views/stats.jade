@@ -1,37 +1,53 @@
-mixin time-tabs(heading, prefix)
-  h1= heading
-    small  or 
-      a(href='/stats/games') view more
-  div.tabbable
-    ul.nav.nav-tabs
-      li.active
-        a(href='##{prefix}-day', data-toggle='tab') Today
-      li
-        a(href='##{prefix}-week', data-toggle='tab') 7 days
-      li
-        a(href='##{prefix}-month', data-toggle='tab') Month
-      li
-        a(href='##{prefix}-alltime', data-toggle='tab') All time
-    div.tab-content
-      div.tab-pane.active(id='#{prefix}-day')
-        p test
-
-      div.tab-pane(id='#{prefix}-week')
-        p test2
-
-      div.tab-pane(id='#{prefix}-month')
-        p test3
-
-      div.tab-pane(id='#{prefix}-alltime')
-        p test4
+mixin players(list)
+  table.table.table-striped
+    thead
+      tr
+        th Rank
+        th Player Name
+        th Score
+      each player, i in list
+        tr
+          td= i
+          td= player.name
+          td= player.score
 
 div.row
   div.span8
     section#leaderboard
-      mixin time-tabs('Top 10 players', 'p')
+      h1 Top 10 players 
+        small
+          a(href='/stats/games') Show more...
+
+      div.tabbable
+        ul.nav.nav-tabs
+          li.active
+            a(href='#p-day', data-toggle='tab') Today
+          li
+            a(href='#p-week', data-toggle='tab') 7 days
+          li
+            a(href='#p-month', data-toggle='tab') Month
+          li
+            a(href='#p-alltime', data-toggle='tab') All time
+        div.tab-content
+          div.tab-pane.active#p-day
+            +players(pDay)
+
+          div.tab-pane#p-week
+            +players(pWeek)
+
+          div.tab-pane#p-month
+            +players(pMonth)
+
+          div.tab-pane#p-alltime
+            +players(pAlltime)
 
     section#latest-games
-      mixin time-tabs('Latest 10 games', 'g')
+      h1 Recent games 
+        small
+          a(href='/stats/games') Show more...
+
+      div.game-row
+        h2 Game on December 21, 2012...
 
   div.span4
     include includes/sidebar
