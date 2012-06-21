@@ -2,6 +2,7 @@
 Contains all routes.
 ###
 controllers = require '../lib/controllers'
+Resource = require 'express-resource'
 
 module.exports = (app) ->
 
@@ -11,3 +12,5 @@ module.exports = (app) ->
   # Classes
   app.get '/classes', controllers.classes.show
 
+  # Our API
+  app.resource 'games', controllers.games

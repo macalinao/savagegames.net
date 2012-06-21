@@ -13,6 +13,7 @@
   "dependencies": {
     "stylus": "*",
     "express": "*",
+    "express-resource": "*",
     "jade": "*",
     "connect-assets": "*",
     "markdown": "*",
