@@ -1,5 +1,6 @@
 async = require 'async'
 Player = require '../models/player'
+Game = require '../models/game'
 
 module.exports =
   index: (req, res) ->
@@ -21,3 +22,4 @@ module.exports =
         pWeek: scores[1]
         pMonth: scores[2]
         pAlltime: scores[3]
+        games: Game.find().populate('rankings.player').limit(10).exec()

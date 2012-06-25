@@ -6,6 +6,48 @@ Game = require './game'
 
 Player = new Schema
   name: { type: String, required: true }
+  name_lower: String
+
+Player.methods.statReport = (cb) ->
+  @games (err, games) =>
+    # Games played
+    gamesPlayed = games.length
+
+    # Time played
+    timePlayed = 0
+
+    # Wins
+    wins = 0
+
+    # Top 10 finishes
+    top10Finishes = 0
+
+    # Best finish
+    bestFinish = 1000000
+    bestFinishGame = null
+
+    for game in games
+      ranking = game.getRankingOfPlayer @_id.toString()
+      timePlayed += ranking.time
+      wins += 1 if ranking.rank is 1
+      top10Finishes += 1 if ranking.rank >= 10
+      if bestFinish > ranking.rank
+        bestFinish = ranking.rank
+        bestFinishGame = game
+
+    # Avg time
+    averageTimeSurvived = timePlayed / gamesPlayed
+
+    cb null,
+      player: @this
+      gameplay:
+        gamesPlayed: gamesPlayed
+        timePlayed: timePlayed
+        averageTimeSurvived: averageTimeSurvived
+        numberOfWins: wins
+        top10Finishes: top10Finishes
+        bestFinish: bestFinish
+        bestFinishGame: bestFinishGame
 
 Player.methods.games = (cb) ->
   @gamesSince new Date(0), cb
@@ -79,5 +121,9 @@ Player.statics.scoresSince = (date, cb) ->
 
       cb err, parr
     )
+
+Player.pre 'save', (next) ->
+  @name_lower = @name.toLowerCase()
+  next()
 
 module.exports = mongoose.model 'Player', Player

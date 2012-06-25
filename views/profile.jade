@@ -1,0 +1,34 @@
+div.row
+  div.span2 Skin goes here
+  div.span6
+    h1 #{player.name}'s Savage Games Profile
+
+    div#stats-gameplay
+      table.table.table-striped.table-bordered
+        caption
+          h3 Gameplay Stats
+        tbody
+          tr
+            th Games Played
+            td= stats.gameplay.gamesPlayed
+          tr
+            th Time Played
+            td= stats.gameplay.timePlayed
+          tr
+            th Average Time Survived
+            td= stats.gameplay.averageTimeSurvived
+          tr
+            th Number of Wins
+            td= stats.gameplay.numberOfWins
+          tr
+            th Top 10 Finishes
+            td= stats.gameplay.top10Finishes
+          tr
+            th Best Finish
+            td= stats.gameplay.bestFinish
+
+    div#stats-pvp
+      h2 PvP Stats
+
+  div.span4
+    include includes/sidebar

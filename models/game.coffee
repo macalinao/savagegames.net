@@ -5,6 +5,7 @@ Game = new Schema
   type: { type: String, required: yes }
   date: { type: Date, required: yes } # Date the game started
   rankings: [new Schema {
+    rank: Number # The rank number
     time: Number # If none then we have a winner; relative
     player: { type: Schema.ObjectId, ref: 'Player' } # Player
     kills: [{ type: Schema.ObjectId, ref: 'Player' }]
@@ -21,10 +22,14 @@ Game.methods.getRankingOfPlayer = (player) ->
 
   for ranking in @rankings
     rpid = if ranking.player._id? then ranking.player._id else ranking.player
-    if rpid is pid
+    if rpid.toString() is pid.toString()
       return ranking
 
   return null
+
+Game.methods.getWinner = ->
+  return null if @rankings.length <= 0
+  return @rankings[0].player
 
 Game.pre 'save', (next) ->
   # Calculate the scores
@@ -41,6 +46,9 @@ Game.pre 'save', (next) ->
     unless a.score is b.score
       return b.score - a.score
     return a.name.localeCompare b.name
+
+  for i, ranking of @rankings
+    ranking.rank = i + 1
 
   next()
 

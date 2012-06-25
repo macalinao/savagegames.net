@@ -5,10 +5,12 @@ mixin players(list)
         th Rank
         th Player Name
         th Score
+    tbody
       each indiv, i in list
         tr
           td= i + 1
-          td= indiv.name
+          td
+            a(href='/profiles/#{indiv.name}')= indiv.name
           td= indiv.score
 
 div.row
@@ -46,8 +48,24 @@ div.row
         small
           a(href='/stats/games') Show more...
 
-      div.game-row
-        h2 Game on December 21, 2012...
+      each game in games
+        div.row
+          div.span2 Insert pic here
+          div.span6
+            table.table
+              tbody
+                tr
+                  th Date
+                  td= game.date
+                tr
+                  th Players
+                  td= game.rankings.length
+                tr
+                  th Winner
+                  td= game.getWinner().name
+                tr
+                  th Map
+                  td= game.type
 
   div.span4
     include includes/sidebar
