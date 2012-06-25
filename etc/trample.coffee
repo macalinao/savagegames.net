@@ -1,18 +1,21 @@
 ###
-Get it? You're trampling the seeds. Minecraft reference.
+Get it? You're trampling the seeds. Minecraft reference because we're a Minecraft server.
 ###
-
+async = require 'async'
 mongoose = require 'mongoose'
 config = require '../config/config'
 mongoose.connect config.development.database
 
-Player = require '../models/player'
-Player.collection.drop()
+models = [
+  require '../models/player',
+  require '../models/game'
+]
 
-Game = require '../models/game'
-Game.collection.drop()
+async.forEach models, (item, callback) ->
+  item.collection.drop()
+  callback()
+, (err) ->
+  mongoose.disconnect()
 
-mongoose.disconnect()
-
-console.log 'Done'
-process.exit 0
+  console.log 'Done'
+  process.exit 0

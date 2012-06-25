@@ -1,3 +1,4 @@
+async = require 'async'
 mongoose = require 'mongoose'
 config = require '../config/config'
 mongoose.connect config.development.database
@@ -5,19 +6,10 @@ mongoose.connect config.development.database
 Player = require '../models/player'
 
 albireox = new Player name: 'AlbireoX'
-albireox.save()
-
 mongong = new Player name: 'Mongong'
-mongong.save()
-
 bluejayway = new Player name: 'BlueJayWay'
-bluejayway.save()
-
 photon75 = new Player name: 'Photon75'
-photon75.save()
-
 svinnik = new Player name: 'Svinnik'
-svinnik.save()
 
 ##########
 # GAMES
@@ -46,7 +38,6 @@ game1 = new Game
       class: 'Firefighter'
     }
   ]
-game1.save()
 
 game2 = new Game
   type: 'Desert'
@@ -71,9 +62,20 @@ game2 = new Game
       class: 'Hacker' # :p
     }
   ]
-game2.save()
 
-mongoose.disconnect()
+# Save it all!
+async.parallel [
+  # Players
+  (cb) -> albireox.save(-> cb null),
+  (cb) -> mongong.save(-> cb null),
+  (cb) -> bluejayway.save(-> cb null),
+  (cb) -> photon75.save(-> cb null),
+  (cb) -> svinnik.save(-> cb null),
 
-console.log 'Done'
-process.exit 0
+  # Games
+  (cb) -> game1.save(-> cb null),
+  (cb) -> game2.save(-> cb null)
+], (err, results) ->
+  mongoose.disconnect()
+  console.log 'Done'
+  process.exit 0
