@@ -7,7 +7,7 @@ mixin players(list)
         th Score
       each indiv, i in list
         tr
-          td 0
+          td= i + 1
           td= indiv.name
           td= indiv.score
 

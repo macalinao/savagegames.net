@@ -50,23 +50,34 @@ Player.statics.recent = (date, cb) ->
 
 Player.statics.scoresSince = (date, cb) ->
   ###
-  Gets the scores of all players since the given date.
+  Gets the scores of all players since the given date and sorts them by score.
   ###
   Game
     .where('date').gte(date)
     .populate('rankings.player')
     .exec((err, games) ->
-      players = []
+      players = {}
 
       for game in games
         for ranking in game.rankings
           p = ranking.player
-          indiv =
-            name: p.name
-            score: game.scoreOfPlayer p._id
-          players.push indiv
+          players[p.name] = 0 unless players[p.name]?
+          players[p.name] += game.scoreOfPlayer p._id
 
-      cb err, players
+      parr = []
+
+      for name, score of players
+        parr.push
+          name: name
+          score: score
+
+      parr.sort (a, b) ->
+        unless a.score is b.score
+          return b.score - a.score
+
+        return a.name.localeCompare b.name
+
+      cb err, parr
     )
 
 module.exports = mongoose.model 'Player', Player
