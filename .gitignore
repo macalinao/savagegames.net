@@ -4,6 +4,4 @@ node_modules
 *.sublime-project
 *.sublime-workspace
 
-lib/
-
 config/config.coffee
