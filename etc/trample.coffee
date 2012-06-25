@@ -13,3 +13,6 @@ Game = require '../models/game'
 Game.collection.drop()
 
 mongoose.disconnect()
+
+console.log 'Done'
+process.exit 0

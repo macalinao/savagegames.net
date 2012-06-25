@@ -74,3 +74,6 @@ game2 = new Game
 game2.save()
 
 mongoose.disconnect()
+
+console.log 'Done'
+process.exit 0
