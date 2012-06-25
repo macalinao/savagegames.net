@@ -7,15 +7,14 @@ config = require '../config/config'
 mongoose.connect config.development.database
 
 models = [
-  require '../models/player',
-  require '../models/game'
+  require('../models/player'),
+  require('../models/game')
 ]
 
 async.forEach models, (item, callback) ->
-  item.collection.drop()
-  callback()
+  item.collection.drop ->
+    callback()
 , (err) ->
-  mongoose.disconnect()
-
-  console.log 'Done'
-  process.exit 0
+  mongoose.disconnect ->
+    console.log 'Done'
+    process.exit 0

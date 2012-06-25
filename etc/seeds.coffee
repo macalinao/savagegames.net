@@ -41,7 +41,7 @@ game1 = new Game
 
 game2 = new Game
   type: 'Desert'
-  date: Date.now() - 1000
+  date: Date.now() - (12 * 60 * 60 * 1000) # 12 hours ago
   rankings: [
     {
       time: -1 # Winner
@@ -63,18 +63,43 @@ game2 = new Game
     }
   ]
 
+game3 = new Game
+  type: 'Desert'
+  date: Date.now() - (36 * 60 * 60 * 1000) # 36 hours ago
+  rankings: [
+    {
+      time: -1 # Winner
+      player: albireox
+      kills: [photon75]
+      class: 'Warrior'
+    },
+    {
+      time: 300 # Game lasted 300 seconds
+      player: photon75
+      kills: [svinnik]
+      class: 'Archer'
+    },
+    {
+      time: 70
+      player: svinnik
+      kills: []
+      class: 'Hacker' # :p
+    }
+  ]
+
 # Save it all!
 async.parallel [
   # Players
-  (cb) -> albireox.save(-> cb null),
-  (cb) -> mongong.save(-> cb null),
-  (cb) -> bluejayway.save(-> cb null),
-  (cb) -> photon75.save(-> cb null),
-  (cb) -> svinnik.save(-> cb null),
+  (cb) -> albireox.save cb,
+  (cb) -> mongong.save cb,
+  (cb) -> bluejayway.save cb,
+  (cb) -> photon75.save cb,
+  (cb) -> svinnik.save cb,
 
   # Games
-  (cb) -> game1.save(-> cb null),
-  (cb) -> game2.save(-> cb null)
+  (cb) -> game1.save cb,
+  (cb) -> game2.save cb,
+  (cb) -> game3.save cb
 ], (err, results) ->
   mongoose.disconnect()
   console.log 'Done'
