@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
 async = require 'async'
+misc = require '../lib/misc'
 Schema = mongoose.Schema
 
 Game = require './game'
@@ -39,7 +40,7 @@ Player.methods.statReport = (cb) ->
     averageTimeSurvived = timePlayed / gamesPlayed
 
     cb null,
-      player: @this
+      player: this
       gameplay:
         gamesPlayed: gamesPlayed
         timePlayed: timePlayed
@@ -48,6 +49,19 @@ Player.methods.statReport = (cb) ->
         top10Finishes: top10Finishes
         bestFinish: bestFinish
         bestFinishGame: bestFinishGame
+
+Player.methods.prettyStatReport = (cb) ->
+  @statReport (err, stats) ->
+    cb err,
+      player: stats.player
+      gameplay:
+        gamesPlayed: stats.gameplay.gamesPlayed + ' games'
+        timePlayed: stats.gameplay.timePlayed + ' seconds'
+        averageTimeSurvived: stats.gameplay.averageTimeSurvived + ' seconds'
+        numberOfWins: stats.gameplay.numberOfWins + ' wins'
+        top10Finishes: stats.gameplay.top10Finishes + ' games'
+        bestFinish: misc.getOrdinal(stats.gameplay.bestFinish) + ' place'
+        bestFinishGame: '/games/' + stats.gameplay.bestFinishGame._id.toString()
 
 Player.methods.games = (cb) ->
   @gamesSince new Date(0), cb

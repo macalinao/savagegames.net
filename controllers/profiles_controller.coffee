@@ -5,7 +5,7 @@ module.exports =
   index: (req, res) ->
     name = req.params.name
     Player.findOne name_lower: name.toLowerCase(), (err, player) ->
-      player.statReport (err, stats) ->
+      player.prettyStatReport (err, stats) ->
         if err or not player?
           res.send '404', 404
 
