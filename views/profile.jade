@@ -1,34 +1,70 @@
 div.row
-  div.span2 Skin goes here
-  div.span6
+  div.span8
     h1 #{player.name}'s Savage Games Profile
 
-    div#stats-gameplay
-      table.table.table-striped.table-bordered
-        caption
-          h3 Gameplay Stats
-        tbody
-          tr
-            th Games Played
-            td= stats.gameplay.gamesPlayed
-          tr
-            th Time Played
-            td= stats.gameplay.timePlayed
-          tr
-            th Average Time Survived
-            td= stats.gameplay.averageTimeSurvived
-          tr
-            th Number of Wins
-            td= stats.gameplay.numberOfWins
-          tr
-            th Top 10 Finishes
-            td= stats.gameplay.top10Finishes
-          tr
-            th Best Finish
-            td= stats.gameplay.bestFinish
+    div.row
+      div.span4
+        img(src='http://s3.amazonaws.com/MinecraftSkins/#{player.name}.png')
+      div.span4
+        div#stats-gameplay
+          table.table.table-striped.table-bordered
+            caption
+              h3 Gameplay Stats
+            tbody
+              tr
+                th Games Played
+                td= stats.gameplay.gamesPlayed
+              tr
+                th Time Played
+                td= stats.gameplay.timePlayed
+              tr
+                th Average Time Survived
+                td= stats.gameplay.averageTimeSurvived
+              tr
+                th Number of Wins
+                td= stats.gameplay.numberOfWins
+              tr
+                th Top 10 Finishes
+                td= stats.gameplay.top10Finishes
+              tr
+                th Best Finish
+                td= stats.gameplay.bestFinish
 
-    div#stats-pvp
-      h2 PvP Stats
+        div#stats-pvp
+          table.table.table-striped.table-bordered
+            caption
+              h3 PvP Stats
+            tbody
+              tr
+                th Most Kills
+                td 4 kills (View)
+              tr
+                th Total Kills
+                td 15 kills
+              tr
+                th Average Kills
+                td 123213
+              tr
+                th Nemesis
+                td Killed by Player 1 times
+              tr
+                th Whipping Boy
+                td asdsad (1 kills)
+
+    div.row
+      div#recent-games
+        table.table.table-striped.table-bordered
+          caption
+            h3 Last 25 Games Played
+          thead
+            tr
+              th Game #
+              th Place
+              th Class
+              th Kills
+              th Killed By
+              th Time Played
+              th Score
 
   div.span4
     include includes/sidebar
