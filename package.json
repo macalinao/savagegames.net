@@ -11,9 +11,11 @@
     "test": "make test"
   }, 
   "dependencies": {
+    "async": "*",
     "stylus": "*",
     "express": "*",
     "express-resource": "*",
+    "express-mongoose": "*",
     "jade": "*",
     "connect-assets": "*",
     "markdown": "*",

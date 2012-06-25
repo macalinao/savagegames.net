@@ -8,6 +8,7 @@ module.exports = (app, express) ->
     app.use express.bodyParser()
 
     app.use require('connect-assets')()
+    require 'express-mongoose'
 
     app.set 'view engine', 'jade'
     app.set 'view options', pretty: true

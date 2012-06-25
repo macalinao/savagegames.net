@@ -5,11 +5,11 @@ mixin players(list)
         th Rank
         th Player Name
         th Score
-      each player, i in list
+      each indiv, i in list
         tr
-          td= i
-          td= player.name
-          td= player.score
+          td 0
+          td= indiv.name
+          td= indiv.score
 
 div.row
   div.span8
