@@ -148,7 +148,7 @@ Player.methods.prettyStatReport = (cb) ->
         mostKills: stats.pvp.mostKills + ' kills'
         mostKillsGame: stats.pvp.mostKillsGame
         totalKills: stats.pvp.totalKills + ' kills'
-        averageKills: stats.pvp.averageKills + ' kills/game'
+        averageKills: stats.pvp.averageKills.toFixed(2) + ' kills/game'
         mostKilledBy: (->
           if stats.pvp.mostKilledBy
             return 'Killed by ' + stats.pvp.mostKilledBy.name \
