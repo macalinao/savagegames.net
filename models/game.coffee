@@ -5,14 +5,14 @@ Game = new Schema
   type: { type: String, required: yes }
   date: { type: Date, required: yes } # Date the game started
   rankings: [new Schema {
-    time: Number # If none then we have a winner; relative
+    time: Number # Time of death (or win)
     player: { type: Schema.ObjectId, ref: 'Player' } # Player
     kills: [{ type: Schema.ObjectId, ref: 'Player' }]
     class: String # Class used
+    rank: Number
 
     # Calculated
     score: Number
-    rank: Number
     killer: { type: Schema.ObjectId, ref: 'Player' }
   }]
 
@@ -48,7 +48,6 @@ Game.pre 'save', (next) ->
 
   for ranking, i in @rankings
     ranking.score = i
-    ranking.rank = i + 1
 
   tkillers = {}
   for ranking in @rankings
