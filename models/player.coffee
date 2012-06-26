@@ -165,7 +165,7 @@ Player.methods.prettyStatReport = (cb) ->
         )()
 
 Player.methods.getLink = ->
-  return '/profiles/' + @name
+  return '/players/' + @name
 
 Player.methods.games = (cb) ->
   @gamesSince new Date(0), cb

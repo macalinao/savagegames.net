@@ -10,6 +10,6 @@ module.exports =
           name: req.params.name
 
       player.prettyStatReport (err, stats) ->
-        res.render 'profile.jade',
+        res.render 'player/player.jade',
           player: player
           stats: stats

@@ -11,6 +11,6 @@ module.exports = (app) ->
 
   app.get '/games/:game', controllers.games.view
 
-  app.get '/profiles/:name', controllers.profiles.view
+  app.get '/players/:name', controllers.players.view
 
   app.get '*', (req, res) -> res.render '404.jade'
