@@ -46,7 +46,7 @@ Game.pre 'save', (next) ->
       return b.time - a.time
     return a.name.localeCompare b.name
 
-  for i, ranking of @rankings
+  for ranking, i in @rankings
     ranking.score = i
     ranking.rank = i + 1
 
