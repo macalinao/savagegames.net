@@ -27,6 +27,15 @@ Player.methods.statReport = (cb) ->
     bestFinish = 1000000
     bestFinishGame = null
 
+    # Kills
+    mostKills = -1
+    mostKillsGame = null
+    totalKills = 0
+
+    # Temp vars
+    playerKills = {}
+    playerKilled = {}
+
     for game in games
       ranking = game.getRankingOfPlayer @_id.toString()
       timePlayed += ranking.time
@@ -36,19 +45,92 @@ Player.methods.statReport = (cb) ->
         bestFinish = ranking.rank
         bestFinishGame = game
 
+      # Pvp
+      gk = ranking.kills.length
+      if gk > mostKills
+        mostKills = gk
+        mostKillsGame = game
+      totalKills += gk
+
+      # Killed/kills stuff
+      for kill in ranking.kills
+        if playerKills[kill.player]?
+          playerKills[kill.player] += 1
+        else
+          playerKills[kill.player] = 1
+
+      if playerKilled[ranking.killer]?
+        playerKilled[ranking.killer] += 1
+      else
+        playerKilled[ranking.killer] = 1
+
     # Avg time
     averageTimeSurvived = timePlayed / gamesPlayed
 
-    cb null,
-      player: this
-      gameplay:
-        gamesPlayed: gamesPlayed
-        timePlayed: timePlayed
-        averageTimeSurvived: averageTimeSurvived
-        numberOfWins: wins
-        top10Finishes: top10Finishes
-        bestFinish: bestFinish
-        bestFinishGame: bestFinishGame
+    # Avg kills
+    averageKills = totalKills / gamesPlayed
+
+    # Get killer/killed
+    killersArr = []
+    for id, kills of playerKilled
+      killersArr.push
+        id: id
+        kills: kills
+    killersArr.sort (a, b) ->
+      return b.kills - a.kills
+
+    killsArr = []
+    for id, kills of playerKills
+      killsArr.push
+        id: id
+        kills: kills
+    killsArr.sort (a, b) ->
+      return b.kills - a.kills
+
+    mostKilledById = null
+    mostKilledByKills = 0
+    if killersArr.length > 0
+      mostKilledById = killersArr[0].id
+      mostKilledByKills = killersArr[0].kills
+
+    mostKilledId = null
+    mostKilledKills = 0
+    if killsArr.length > 0
+      mostKilledId = killsArr[0].id 
+      mostKilledKills = killsArr[0].kills
+
+    getKillPlayers = (cb) ->
+      getMostKilledBy = (cbx) ->
+        if mostKilledById is null
+          return cbx null, null
+        mongoose.model('Player').findById mostKilledById, cbx
+
+      getMostKilledBy (err, mostKilledBy) ->
+        if mostKilledId is null
+          return cb err, mostKilledBy, null
+        mongoose.model('Player').findById mostKilledId, (err, mostKilled) ->
+          cb err, mostKilledBy, mostKilled
+
+    getKillPlayers (err, mostKilledBy, mostKilled) ->
+      cb null,
+        player: this
+        gameplay:
+          gamesPlayed: gamesPlayed
+          timePlayed: timePlayed
+          averageTimeSurvived: averageTimeSurvived
+          numberOfWins: wins
+          top10Finishes: top10Finishes
+          bestFinish: bestFinish
+          bestFinishGame: bestFinishGame
+        pvp:
+          mostKills: mostKills
+          mostKillsGame: mostKillsGame
+          totalKills: totalKills
+          averageKills: averageKills
+          mostKilledBy: mostKilledBy
+          mostKilledByKills: mostKilledByKills
+          mostKilled: mostKilled
+          mostKilledKills: mostKilledKills
 
 Player.methods.prettyStatReport = (cb) ->
   @statReport (err, stats) ->
@@ -61,7 +143,29 @@ Player.methods.prettyStatReport = (cb) ->
         numberOfWins: stats.gameplay.numberOfWins + ' wins'
         top10Finishes: stats.gameplay.top10Finishes + ' games'
         bestFinish: misc.getOrdinal(stats.gameplay.bestFinish) + ' place'
-        bestFinishGame: '/games/' + stats.gameplay.bestFinishGame._id.toString()
+        bestFinishGame: stats.gameplay.bestFinishGame
+      pvp:
+        mostKills: stats.pvp.mostKills + ' kills'
+        mostKillsGame: stats.pvp.mostKillsGame
+        totalKills: stats.pvp.totalKills + ' kills'
+        averageKills: stats.pvp.averageKills + ' kills/game'
+        mostKilledBy: (->
+          if stats.pvp.mostKilledBy
+            return 'Killed by ' + stats.pvp.mostKilledBy.name \
+              + ' (' + stats.pvp.mostKilledByKills + ' times)'
+          else
+            return 'Immortal!'
+        )()
+        mostKilled: (->
+          if stats.pvp.mostKilled
+            return 'Killed ' + stats.pvp.mostKilled.name \
+              + ' (' + stats.pvp.mostKilledKills + ' times)'
+          else
+            return 'PvP Noob'
+        )()
+
+Player.methods.getLink = ->
+  return '/profiles/' + @name
 
 Player.methods.games = (cb) ->
   @gamesSince new Date(0), cb

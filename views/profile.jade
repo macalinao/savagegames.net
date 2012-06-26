@@ -37,19 +37,19 @@ div.row
             tbody
               tr
                 th Most Kills
-                td 4 kills (View)
+                td= stats.pvp.mostKills // 4 kills (View)
               tr
                 th Total Kills
-                td 15 kills
+                td= stats.pvp.totalKills
               tr
                 th Average Kills
-                td 123213
+                td= stats.pvp.averageKills
               tr
                 th Nemesis
-                td Killed by Player 1 times
+                td= stats.pvp.mostKilledBy
               tr
                 th Whipping Boy
-                td asdsad (1 kills)
+                td= stats.pvp.mostKilled
 
     div.row
       div#recent-games
