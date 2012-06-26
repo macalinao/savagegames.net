@@ -18,7 +18,7 @@ div.row
     section#leaderboard
       h1 Top 10 players 
         small
-          a(href='/stats/games') Show more...
+          a(href='/players') Show more...
 
       div.tabbable
         ul.nav.nav-tabs
@@ -46,7 +46,7 @@ div.row
     section#latest-games
       h1 Recent games 
         small
-          a(href='/stats/games') Show more...
+          a(href='/games') Show more...
 
       each game in games
         div.row
@@ -57,7 +57,7 @@ div.row
               tbody
                 tr
                   th Date
-                  td= game.date
+                  td= moment(game.date).format('MMMM Do, YYYY h:mm A')
                 tr
                   th Players
                   td= game.rankings.length

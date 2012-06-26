@@ -22,7 +22,8 @@
     "superagent": "*",
     "coffee-script": ">= 1.2.0",
     "mongoose": "*",
-    "base62": "*"
+    "base62": "*",
+    "moment": "*"
   }, 
   "devDependencies": {
     "mocha": "*",   

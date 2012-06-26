@@ -1,4 +1,5 @@
 async = require 'async'
+moment = require 'moment'
 Player = require '../models/player'
 Game = require '../models/game'
 
@@ -23,3 +24,4 @@ module.exports =
         pMonth: scores[2]
         pAlltime: scores[3]
         games: Game.find().populate('rankings.player').limit(10).exec()
+        moment: moment
