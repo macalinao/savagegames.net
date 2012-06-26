@@ -2,7 +2,7 @@ Game = require '../models/game'
 Player = require '../models/player'
 
 module.exports = 
-  index: (req, res) ->
+  view: (req, res) ->
     name = req.params.name
     Player.findOne name_lower: name.toLowerCase(), (err, player) ->
       if err or not player?

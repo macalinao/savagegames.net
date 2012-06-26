@@ -21,7 +21,8 @@
     "markdown": "*",
     "superagent": "*",
     "coffee-script": ">= 1.2.0",
-    "mongoose": "*"
+    "mongoose": "*",
+    "base62": "*"
   }, 
   "devDependencies": {
     "mocha": "*",   

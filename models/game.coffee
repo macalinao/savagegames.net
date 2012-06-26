@@ -1,6 +1,9 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
+b62 = require 'base62'
+crypto = require 'crypto'
+
 Game = new Schema
   type: { type: String, required: yes }
   date: { type: Date, required: yes } # Date the game started
@@ -15,6 +18,9 @@ Game = new Schema
     score: Number
     killer: { type: Schema.ObjectId, ref: 'Player' }
   }]
+
+  # Calculated
+  linkid: String
 
 Game.methods.scoreOfPlayer = (player) ->
   ranking = @getRankingOfPlayer player
@@ -35,7 +41,7 @@ Game.methods.getWinner = ->
   return @rankings[0].player
 
 Game.methods.getLink = ->
-  return '/games/' + @_id
+  return '/games/' + @linkid
 
 Game.pre 'save', (next) ->
   # Calculate the scores
@@ -56,6 +62,15 @@ Game.pre 'save', (next) ->
 
   for ranking in @rankings
     ranking.killer = tkillers[ranking.player]
+
+  enc = b62.encode parseInt(
+    crypto
+      .createHash('md5')
+      .update(@_id.toString())
+      .digest('hex')
+  , 16)
+
+  @linkid = enc.substring 0, enc.length / 2
 
   next()
 
