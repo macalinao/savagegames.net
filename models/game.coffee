@@ -47,17 +47,31 @@ Game.methods.getWinner = ->
 Game.methods.getLink = ->
   return '/games/' + @linkid
 
+scoreFromRank = (rank) ->
+  if rank is 1
+    return 20
+  else if rank is 2
+    return 10
+  else if rank is 3
+    return 7
+  else if rank is 4
+    return 5
+  else if rank is 5
+    return 3
+  else if rank >= 12
+    return 2
+  else if rank >= 24
+    return 1
+  else
+    return 0
+
 Game.pre 'save', (next) ->
   # Calculate the scores
   @rankings.sort (a, b) ->
-    return -1 if a.time < 0
-    return 1 if b.time < 0
-    if a.time isnt b.time
-      return b.time - a.time
-    return a.name.localeCompare b.name
+    return a.rank - b.rank
 
   for ranking, i in @rankings
-    ranking.score = i
+    ranking.score = scoreFromRank parseInt ranking.rank.toString()
 
   tkillers = {}
   for ranking in @rankings
