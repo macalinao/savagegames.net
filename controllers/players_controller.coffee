@@ -13,3 +13,4 @@ module.exports =
         res.render 'player/player.jade',
           player: player
           stats: stats
+          games: Game.find().where('rankings.player', player._id).populate('rankings.killer').limit(25).exec()

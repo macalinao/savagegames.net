@@ -58,13 +58,27 @@ div.row
             h3 Last 25 Games Played
           thead
             tr
-              th Game #
-              th Place
+              th Game
+              th Rank
               th Class
               th Kills
               th Killed By
               th Time Played
               th Score
+          tbody
+            each game in games
+              - var ranking = game.getRankingOfPlayer(player._id)
+              tr
+                td: a(href=game.getLink()) View
+                td= ranking.rank
+                td= ranking.class
+                td= ranking.kills.length
+                if ranking.killer
+                  td: a(href='/players/#{ranking.killer.name}')= ranking.killer.name
+                else
+                  td Winner
+                td= ranking.time
+                td= ranking.score
 
   div.span4
     include ../includes/sidebar
