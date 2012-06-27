@@ -5,7 +5,7 @@ mongoose.connect config.development.database
 
 Player = require '../models/player'
 
-albireox = new Player name: 'AlbireoX'
+albireox = new Player name: 'albireox'
 mongong = new Player name: 'Mongong'
 bluejayway = new Player name: 'BlueJayWay'
 photon75 = new Player name: 'Photon75'

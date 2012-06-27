@@ -9,19 +9,26 @@ div.row
 
     table.table.table-striped.table-bordered
       thead
-        th Rank
-        th Player
-        th Class
-        th Time Played
-        th Kills
-        th Score
+        tr
+          th Rank
+          th Player
+          th Class
+          th Time Played
+          th Kills
+          th Score
       tbody
-        td 1
-        td AlbireoX
-        td SomeClass
-        td 100 milliseconds
-        td Player1, Plaeyer 2, Player 3
-        td 9001+
+        each ranking in game.rankings
+          tr
+            td= ranking.rank
+            td
+              a(href='/players/#{ranking.player.name}', name=ranking.player.name_lower)= ranking.player.name
+            td= ranking.class
+            td= ranking.time
+            td
+              each kill in ranking.kills
+                a(href='##{kill.name_lower}')= kill.name
+                | , 
+            td= ranking.score
 
   div.span4
     include ../includes/sidebar
