@@ -54,10 +54,10 @@ Player.methods.statReport = (cb) ->
 
       # Killed/kills stuff
       for kill in ranking.kills
-        if playerKills[kill.player]?
-          playerKills[kill.player] += 1
+        if playerKills[kill]?
+          playerKills[kill] += 1
         else
-          playerKills[kill.player] = 1
+          playerKills[kill] = 1
 
       if playerKilled[ranking.killer]?
         playerKilled[ranking.killer] += 1
