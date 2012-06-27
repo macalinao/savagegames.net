@@ -1,0 +1,50 @@
+{
+    "server": "secretkey",
+
+    "type": "Vanilla",
+    "date": 1340831796101, 
+    "rankings": [
+        {
+            "time": 398,
+            "player": "albireox",
+            "kills": [
+                "Svinnik",
+                "BlueJayWay"
+            ],
+            "class": "Assassin",
+            "rank": 1
+        },
+        {
+            "time": 398,
+            "player": "BlueJayWay",
+            "kills": [
+                "Mongong"
+            ],
+            "class": "Chef",
+            "rank": 2
+        },
+        {
+            "time": 302,
+            "player": "Mongong",
+            "kills": [
+                "Photon75"
+            ],
+            "class": "Warrior",
+            "rank": 3
+        },
+        {
+            "time": 200,
+            "player": "Photon75",
+            "kills": [],
+            "class": "Assassin",
+            "rank": 4
+        },
+        {
+            "time": 109,
+            "player": "Svinnik",
+            "kills": [],
+            "class": "Warrior",
+            "rank": 5
+        }
+    ]
+}
