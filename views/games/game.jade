@@ -1,8 +1,11 @@
+block head
+  title #{game.getWinner().name} wins | Savage Games | Minecraft Hunger Games Server
+
 div.row
   div.span8
     h1 Savage Games Tournament Stats
       br
-      small Date goes here
+      small= game.prettyDate()
 
     table.table.table-striped.table-bordered
       thead
@@ -21,4 +24,4 @@ div.row
         td 9001+
 
   div.span4
-    include includes/sidebar
+    include ../includes/sidebar

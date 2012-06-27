@@ -3,6 +3,7 @@ Schema = mongoose.Schema
 
 b62 = require 'base62'
 crypto = require 'crypto'
+moment = require 'moment'
 
 Game = new Schema
   type: { type: String, required: yes }
@@ -21,6 +22,9 @@ Game = new Schema
 
   # Calculated
   linkid: String
+
+Game.methods.prettyDate = ->
+  moment(@date).format 'MMMM Do, YYYY h:mm A'
 
 Game.methods.scoreOfPlayer = (player) ->
   ranking = @getRankingOfPlayer player

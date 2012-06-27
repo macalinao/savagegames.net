@@ -57,7 +57,7 @@ div.row
               tbody
                 tr
                   th Date
-                  td= moment(game.date).format('MMMM Do, YYYY h:mm A')
+                  td= game.prettyDate()
                 tr
                   th Players
                   td= game.rankings.length
