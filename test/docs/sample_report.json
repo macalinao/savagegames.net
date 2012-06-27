@@ -1,5 +1,5 @@
 {
-    "server": "secretkey",
+    "secret": "secretkey",
 
     "type": "Vanilla",
     "date": 1340831796101, 

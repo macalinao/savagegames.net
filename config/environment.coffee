@@ -1,4 +1,4 @@
-config = require './config'
+config = require './configwrapper'
 mongoose = require 'mongoose'
 
 module.exports = (app, express) ->

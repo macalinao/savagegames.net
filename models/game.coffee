@@ -6,6 +6,7 @@ crypto = require 'crypto'
 moment = require 'moment'
 
 Game = new Schema
+  server: { type: Schema.ObjectId, ref: 'Server' }
   type: { type: String, required: yes }
   date: { type: Date, required: yes } # Date the game started
   rankings: [new Schema {
