@@ -13,3 +13,7 @@ exports.getOrdinal = (n) ->
   s = ['th', 'st', 'nd', 'rd']
   v = n % 100
   return n + (s[(v - 20) % 10] || s[v] || s[0])
+
+exports.limit = (amt, arr) ->
+  return arr.splice(0, 9) if arr.length > 10
+  return arr
