@@ -111,31 +111,34 @@ Player.methods.statReport = (cb) ->
         mongoose.model('Player').findById mostKilledId, (err, mostKilled) ->
           cb err, mostKilledBy, mostKilled
 
-    getKillPlayers (err, mostKilledBy, mostKilled) ->
-      cb null,
-        player: this
-        gameplay:
-          gamesPlayed: gamesPlayed
-          timePlayed: timePlayed
-          averageTimeSurvived: averageTimeSurvived
-          numberOfWins: wins
-          top10Finishes: top10Finishes
-          bestFinish: bestFinish
-          bestFinishGame: bestFinishGame
-        pvp:
-          mostKills: mostKills
-          mostKillsGame: mostKillsGame
-          totalKills: totalKills
-          averageKills: averageKills
-          mostKilledBy: mostKilledBy
-          mostKilledByKills: mostKilledByKills
-          mostKilled: mostKilled
-          mostKilledKills: mostKilledKills
+    @score (err, score) =>
+      getKillPlayers (err, mostKilledBy, mostKilled) =>
+        cb null,
+          player: this
+          score: score
+          gameplay:
+            gamesPlayed: gamesPlayed
+            timePlayed: timePlayed
+            averageTimeSurvived: averageTimeSurvived
+            numberOfWins: wins
+            top10Finishes: top10Finishes
+            bestFinish: bestFinish
+            bestFinishGame: bestFinishGame
+          pvp:
+            mostKills: mostKills
+            mostKillsGame: mostKillsGame
+            totalKills: totalKills
+            averageKills: averageKills
+            mostKilledBy: mostKilledBy
+            mostKilledByKills: mostKilledByKills
+            mostKilled: mostKilled
+            mostKilledKills: mostKilledKills
 
 Player.methods.prettyStatReport = (cb) ->
   @statReport (err, stats) ->
     cb err,
       player: stats.player
+      score: stats.score
       gameplay:
         gamesPlayed: stats.gameplay.gamesPlayed + ' games'
         timePlayed: stats.gameplay.timePlayed + ' seconds'
@@ -178,11 +181,14 @@ Player.methods.gamesSince = (date, cb) ->
     .where('date').gte(date)
     .exec(cb)
 
+Player.methods.score = (cb) ->
+  @scoreSince new Date(0), cb
+
 Player.methods.scoreSince = (date, cb) ->
   ###
   Gets the score of the player since the given date.
   ###
-  @gamesSince date, (err, games) ->
+  @gamesSince date, (err, games) =>
     cb err, 0 if err
     
     total = 0
