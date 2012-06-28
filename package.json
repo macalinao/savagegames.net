@@ -13,16 +13,18 @@
   "dependencies": {
     "async": "*",
     "stylus": "*",
-    "express": "*",
+    "express": "2.x",
     "express-mongoose": "*",
     "jade": "*",
     "connect-assets": "*",
     "markdown": "*",
     "superagent": "*",
     "coffee-script": ">= 1.2.0",
-    "mongoose": "*",
+    "mongoose": "2.x",
     "base62": "*",
-    "moment": "*"
+    "moment": "*",
+    "less": "*",
+    "qs": "*"
   }, 
   "devDependencies": {
     "mocha": "*",   
