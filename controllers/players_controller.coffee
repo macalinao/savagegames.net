@@ -7,6 +7,7 @@ module.exports =
     Player.findOne name_lower: name.toLowerCase(), (err, player) ->
       if err or not player?
         return res.render 'player404.jade'
+          status: 404
           name: req.params.name
 
       player.prettyStatReport (err, stats) ->

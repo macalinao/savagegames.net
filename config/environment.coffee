@@ -13,6 +13,7 @@ module.exports = (app, express) ->
     app.set 'view engine', 'jade'
     app.set 'view options', pretty: true
     app.use express.static(__dirname + "/public")
+    app.use express.bodyParser()
 
   # Development
   app.configure 'development', ->

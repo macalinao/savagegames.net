@@ -13,4 +13,6 @@ module.exports = (app) ->
 
   app.get '/players/:name', controllers.players.view
 
-  app.get '*', (req, res) -> res.render '404.jade'
+  app.post '/reports', controllers.reports.index
+
+  app.get '*', (req, res) -> res.render '404.jade', status: 404
