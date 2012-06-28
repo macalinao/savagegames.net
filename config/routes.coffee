@@ -2,7 +2,6 @@
 Contains all routes.
 ###
 controllers = require '../lib/controllers'
-Resource = require 'express-resource'
 
 module.exports = (app) ->
   app.get '/', controllers.index

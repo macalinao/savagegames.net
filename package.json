@@ -14,7 +14,6 @@
     "async": "*",
     "stylus": "*",
     "express": "*",
-    "express-resource": "*",
     "express-mongoose": "*",
     "jade": "*",
     "connect-assets": "*",
