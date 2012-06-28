@@ -6,4 +6,4 @@ require('./config/environment') app, express
 require('./config/routes') app
 
 # Setup the port
-app.listen 3535
+app.listen 80
