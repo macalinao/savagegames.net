@@ -11,7 +11,7 @@ module.exports = (app, express) ->
     require 'express-mongoose'
 
     app.set 'view engine', 'jade'
-    app.set 'view options', pretty: true
+    app.set 'view options', pretty: false, layout: true
     app.use express.static(__dirname + "/public")
     app.use express.bodyParser()
 
