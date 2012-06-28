@@ -4,6 +4,7 @@ Schema = mongoose.Schema
 Server = new Schema
   ip: { type: String, required: yes } # The nicely formatted ip of the server.
   port: { type: String, required: yes, default: 25565 } # The port of the server.
+  ping_port: { type: Number, required: yes } # Ping server port
   location: { type: String, required: yes } # Geographical location, like US or something
   secret: { type: String, required: yes } # The secret key that the server will use to communicate with us, UNIQUE
   type: { type: String, required: yes, default: 'Survival' } # Obvious

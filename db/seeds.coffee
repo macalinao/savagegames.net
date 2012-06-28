@@ -22,6 +22,7 @@ module.exports = (done) ->
     ip: 'a.mcsg.co'
     location: 'USA'
     secret: 'secretkey'
+    ping_port: 25809
 
   ##########
   # GAMES
