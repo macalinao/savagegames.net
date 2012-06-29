@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 config = require '../config/configwrapper'
 mongoose.connect config.production.database
-server = require '../models/server'
+Server = require '../models/server'
 argv = require('optimist')
   .usage('Add a server to the database.')
 
