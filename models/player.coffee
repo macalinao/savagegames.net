@@ -246,6 +246,25 @@ Player.statics.scoresSince = (date, cb) ->
       cb err, parr
     )
 
+Player.statics.getPlayer = (name, cb) ->
+  ###
+  Gets a player. If it doesn't exist it creates it.
+
+  @param name The player name
+  @param cb(err, player) The created player.
+  ###
+  mongoose.model('Player').findOne().where('name', name).exec (err, player) =>
+    return cb err, null if err
+
+    unless player
+      player = new Player
+        name: name
+      player.save (err) =>
+        return cb err, null if err 
+        cb null, player
+    else
+      cb null, player
+
 Player.pre 'save', (next) ->
   @name_lower = @name.toLowerCase()
   next()

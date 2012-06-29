@@ -3,27 +3,11 @@ Game = require '../models/game'
 Player = require '../models/player'
 async = require 'async'
 
-makeRank = (rk) ->
-  time: rk.time
-  player: rk.player
-  kills: rk.kills
-  class: rk.class
-  rank: rk.rank
-
 verifyPlayer = (rk, cb) ->
-  Player.findOne().where('name', rk.player).exec (err, player) =>
-    return cb err, null
-
-    unless player
-      player = new Player
-        name: rk.player
-      player.save => 
-        rk.player = player
-        cb null, makeRank(rk)
-    else
-      rk.player = player
-      cb null, makeRank(rk)
-
+  Player.getPlayer rk.player, (err, player) =>
+    return cb err, null if err
+    rk.player = player
+    cb null, rk
 
 exports.parse = (report, cb) ->
   ###
