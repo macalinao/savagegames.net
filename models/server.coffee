@@ -14,7 +14,7 @@ Server.methods.createConnection = ->
   ###
   Creates a connection to the server's info stuff.
   ###
-  net.createConnection @port, @ip
+  # return net.createConnection @port, @ip
 
 Server.methods.formattedIp = ->
   ###
