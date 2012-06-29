@@ -257,7 +257,7 @@ Player.statics.getPlayer = (name, cb) ->
     return cb err, null if err
 
     unless player
-      player = new Player
+      player = new mongoose.model('Player')
         name: name
       player.save (err) =>
         return cb err, null if err 
