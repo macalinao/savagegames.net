@@ -253,11 +253,11 @@ Player.statics.getPlayer = (name, cb) ->
   @param name The player name
   @param cb(err, player) The created player.
   ###
-  mongoose.model('Player').findOne().where('name', name).exec (err, player) =>
+  @findOne().where('name', name).exec (err, player) =>
     return cb err, null if err
 
     unless player
-      player = new mongoose.model('Player')
+      player = new this
         name: name
       player.save (err) =>
         return cb err, null if err 

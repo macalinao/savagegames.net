@@ -3,12 +3,15 @@ Game = require '../models/game'
 Player = require '../models/player'
 async = require 'async'
 
+getPlayer = (name, cb) ->
+  Player.getPlayer name, cb
+
 verifyPlayer = (rk, cb) ->
-  Player.getPlayer rk.player, (err, player) =>
+  Player.getPlayer rk.player, (err, player) ->
     return cb err, null if err
     rk.player = player
 
-    async.map rk.kills, Player.getPlayer, (err, players) ->
+    async.forEach rk.kills, getPlayer, (err, players) ->
       return cb err, null if err
 
       rk.kills = players
