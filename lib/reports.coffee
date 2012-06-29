@@ -7,7 +7,12 @@ verifyPlayer = (rk, cb) ->
   Player.getPlayer rk.player, (err, player) =>
     return cb err, null if err
     rk.player = player
-    cb null, rk
+
+    async.map rk.kills, Player.getPlayer, (err, players) ->
+      return cb err, null if err
+
+      rk.players = players
+      cb null, rk
 
 exports.parse = (report, cb) ->
   ###
