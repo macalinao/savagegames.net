@@ -1,5 +1,14 @@
 Server = require '../models/server'
 Game = require '../models/game'
+Player = require '../models/player'
+
+pushRank = (rk, rankings) ->
+  rankings.push
+    time: rk.time
+    player: rk.player
+    kills: rk.kills
+    class: rk.class
+    rank: rk.rank
 
 exports.parse = (report, cb) ->
   ###
@@ -18,15 +27,22 @@ exports.parse = (report, cb) ->
 
         type: report.type
         date: new Date(report.date)
-        rankings: (->
+        rankings: (=>
           rankings = []
           for rk in report.rankings
-            rankings.push
-              time: rk.time
-              player: rk.player
-              kills: rk.kills
-              class: rk.class
-              rank: rk.rank
+            Player.findOne().where('name', rk.player).exec (err, player) =>
+              return cb err, null
+
+              unless player
+                player = new Player
+                  name: rk.player
+                player.save => 
+                  rk.player = player
+                  pushRank rk, rankings
+              else
+                rk.player = player
+                pushRank rk, rankings
+
           return rankings
         )()
 
