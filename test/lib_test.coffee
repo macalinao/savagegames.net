@@ -42,7 +42,9 @@ describe 'lib/', ->
 
             Server.findById game.server, (err, server) ->
               server.secret.should.equal report.secret
-              done()
+              game.save (err) ->
+                console.log err if err
+                done()
 
   after (done) ->
     require('../db/trample') ->

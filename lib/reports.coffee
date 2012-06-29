@@ -11,7 +11,7 @@ verifyPlayer = (rk, cb) ->
     async.map rk.kills, Player.getPlayer, (err, players) ->
       return cb err, null if err
 
-      rk.players = players
+      rk.kills = players
       cb null, rk
 
 exports.parse = (report, cb) ->
