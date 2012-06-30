@@ -23,4 +23,4 @@ module.exports =
         pWeek: limit 10, scores[1]
         pMonth: limit 10, scores[2]
         pAlltime: limit 10, scores[3]
-        games: Game.find().populate('rankings.player').limit(10).sort([['date', 'descending']]).exec()
+        games: Game.find().populate('rankings.player').limit(10).sort('date', -1).exec()
