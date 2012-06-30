@@ -47,7 +47,7 @@ describe 'lib/', ->
                 console.log err if err
 
                 Player.findOne().where('name', 'albireox').exec (err, albireox) ->
-                  game.rankings[0].player.should.equal albireox
+                  game.rankings[0].player.toString().should.equal albireox._id.toString()
                   done()
 
   after (done) ->
