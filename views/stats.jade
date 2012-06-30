@@ -63,7 +63,7 @@ div.row
                   td= game.rankings.length
                 tr
                   th Winner
-                  td= game.getWinner().name
+                  td: a(href=game.getWinner().getLink())= game.getWinner().name
                 tr
                   th Map
                   td= game.type
