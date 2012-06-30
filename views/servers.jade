@@ -1,0 +1,32 @@
+block head
+  != js('servers.js')
+
+div.row
+  div.span8
+    div.page-header
+      h1 List of Servers
+
+    p Below is a list of all of our servers.
+
+    div
+      h3
+        span#player-count
+        |  players online
+
+    ul.nav.nav-tabs
+      li.active
+        a(href='#starting-soon', data-toggle='tab') Games Starting Soon
+      li
+        a(href='#servers', data-toggle='tab') In Progress
+
+    div.tab-content
+      div.tab-pane.active#starting-soon
+        h2 Games Starting Soon 
+          small Join a server below to play.
+
+      div.tab-pane#servers
+        h2 Games In Progress 
+          small These games are currently in progress.
+
+  div.span4
+    include includes/sidebar
