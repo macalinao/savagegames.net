@@ -29,6 +29,7 @@ describe 'lib/', ->
 
     reports = require '../lib/reports'
 
+    Player = require '../models/player'
     Server = require '../models/server'
     
     describe '#parse', ->
@@ -44,7 +45,10 @@ describe 'lib/', ->
               server.secret.should.equal report.secret
               game.save (err) ->
                 console.log err if err
-                done()
+
+                Player.findOne().where('name', 'albireox').exec (err, albireox) ->
+                  game.rankings[0].player.should.equal albireox
+                  done()
 
   after (done) ->
     require('../db/trample') ->

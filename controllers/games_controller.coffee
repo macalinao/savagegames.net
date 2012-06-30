@@ -13,5 +13,7 @@ module.exports =
         if err or not game
           return next()
 
+        console.log JSON.stringify game
+
         res.render 'games/game.jade'
           game: game
