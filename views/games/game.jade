@@ -29,7 +29,8 @@ div.row
             td= ranking.time
             td
               each kill in ranking.kills
-                a(href='##{kill.name_lower}')= kill.name
+                - var killPlayer = ids[kill]
+                a(href=killPlayer.getLink())= killPlayer.name
                 | , 
             td= ranking.score
 

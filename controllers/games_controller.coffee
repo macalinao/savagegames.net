@@ -9,17 +9,19 @@ module.exports =
   view: (req, res, next) ->
     Game.findOne()
       .where('linkid', req.params.game)
-      .populate('rankings.kills')
 
       .exec (err, game) ->
         if err or not game
           return next()
 
+        playerIds = {}
         async.map game.rankings, (ranking, cb) ->
           Player.findById ranking.player, (err, player) ->
             return cb err, null if err
+            playerIds[ranking.player] = player
             return cb null, player
         , (err, players) ->
           res.render 'games/game.jade'
             game: game
             players: players
+            ids: playerIds
