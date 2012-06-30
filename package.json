@@ -25,7 +25,8 @@
     "moment": "*",
     "less": "*",
     "qs": "*",
-    "optimist": "0.3.4"
+    "optimist": "0.3.4",
+    "mcquery": "0.0.1"
   }, 
   "devDependencies": {
     "mocha": "*",   

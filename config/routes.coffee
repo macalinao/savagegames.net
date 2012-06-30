@@ -15,4 +15,7 @@ module.exports = (app) ->
 
   app.post '/reports', controllers.reports.index
 
+  # API
+  app.get '/api/ping_servers.json', controllers.api.pingServers
+
   app.get '*', (req, res) -> res.render '404.jade', status: 404
