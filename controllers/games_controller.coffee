@@ -5,7 +5,8 @@ module.exports =
     res.render 'games/index.jade'
 
   view: (req, res, next) ->
-    Game.findOne().where('linkid', req.params.game)
+    Game.findOne()
+      .where('linkid', req.params.game)
       .populate('rankings.player')
       .populate('rankings.kills')
 
