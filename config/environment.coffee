@@ -24,5 +24,5 @@ module.exports = (app, express) ->
 
   # Production
   app.configure 'production', ->
-    app.use express.errorHandler
+    app.use express.errorHandler()
     mongoose.connect config.production.database

@@ -1,5 +1,8 @@
 block head
-  title #{game.getWinner().name} wins | Savage Games | Minecraft Hunger Games Server
+  if players.length > 0
+    title #{players[0].name} wins | Savage Games | Minecraft Hunger Games Server
+  else
+    title Nobody wins | Savage Games | Minecraft Hunger Games Server
 
 div.row
   div.span8
@@ -17,11 +20,11 @@ div.row
           th Kills
           th Score
       tbody
-        each ranking in game.rankings
+        each ranking, i in game.rankings
           tr
             td= ranking.rank
             td
-              a(href='/players/#{ranking.player.name}', name=ranking.player.name_lower)= ranking.player.name
+              a(href=players[i].getLink(), name=players[i].name_lower)= players[i].name
             td= ranking.class
             td= ranking.time
             td
